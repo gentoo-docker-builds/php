@@ -7,7 +7,8 @@ COPY --from=gentoo/portage:latest /var/db/repos/gentoo /var/db/repos/gentoo
 
 # ------------------- emerge
 RUN emerge -C sandbox
-RUN echo 'dev-lang/php ~amd64' >> /etc/portage/package.accept_keywords/zz-autounmask
+RUN mkdir -p /etc/portage/package.accept_keywords
+RUN echo 'dev-lang/php ~amd64' >> /etc/portage/package.accept_keywords/php
 RUN ROOT=/php FEATURES='-usersandbox' emerge php
 
 # ------------------- shrink
